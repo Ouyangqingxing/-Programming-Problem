@@ -17,9 +17,9 @@ public class Oyqx_20160124
 	public static int getRusult()
 	{
 		//1、初始化各个参数 分别为公鸡 母鸡 小鸡的数量 以及最后算出来的结果。 / Initialize the parameter which represent the number of cock,hen,chick and the result of this question.
-		int a = 1;			// 取值范围1-20 可以肯定如果a=0没有解   / a must between 1 to 20.
-		int b = 1;			// 取值范围1-33 可以肯定如果b=0没有解   / b must between 1 to 33.
-		int c = 98;			// 取值范围1-100  / c must between 1 to 100.
+		int a = 0;			// 取值范围0-20  / a must between 0 to 20.
+		int b = 0;			// 取值范围0-33  / b must between 0 to 33.
+		int c = 100;			// 取值范围0-(100-a-b)  / c must between 1 to (100-a-b).
 		int result = 0; 	 
 		
 		//2、进行循环判断是否满足 直到尝试完所有的组合   / To try all the conditions by loop.
