@@ -1,4 +1,4 @@
- ## 概述
+  **概述**
 一起学习设计模式吧！我会在学习的同时写一些程序~
 同一个设计模式也会写多个实例~
 （Ps：每一个模式的说明和讲解都在测试类里。第一个实例通常没有在项目中的实用价值，但它能让我们更好理解该模式。）
@@ -47,16 +47,16 @@ Every design pattern have one more example~
 |     组    合     |     Composite           |    1          |
 |    迭 代 器      |      Iterator          |     1         |
 |    单    例      |     Singleton           |    2          |
-|   桥    接       |    Bridge            |              |
-|     命    令     |    Command            |              |
-|   职 责 链       |    Chain of Responsibility            |              |
-|   中 介 者       |  Mediator              |              |
-|  享    元        |      Flyweight          |              |
-|  解 释 器        |    Interpreter            |              |
-|  访 问 者        |      Visitor          |              |
+|   桥    接       |    Bridge            |        0      |
+|     命    令     |    Command            |     0         |
+|   职 责 链       |    Chain of Responsibility            |      0        |
+|   中 介 者       |  Mediator              |        0      |
+|  享    元        |      Flyweight          |      0        |
+|  解 释 器        |    Interpreter            |     0         |
+|  访 问 者        |      Visitor          |        0      |
 ---------------------------------
 
 
- #### 参考文献：
+ **参考文献**
  *	《大话设计模式》	- 程杰
  * 	《JavaWeb设计模式之道》	- 蒋海昌
