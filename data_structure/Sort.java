@@ -4,64 +4,99 @@ import java.util.Stack;
 
 public class Sort {
 	/**
-	 * 冒泡排序
+	 * 遍历数组
+	 * 将信息输出在控制台
+	 * @param array 待遍历的数组
 	 */
-	public void bubbleSort(){
+	public void showdata(int[] array){
+		System.out.print("数组信息：");
+		for(int i = 0 ; i < array.length ; i++){
+			System.out.print(array[i]+" ");
+		}
+		System.out.println();
+	}
+
+	public void shellSort(int[] array){
 		
+	}
+	
+	public void RadixSort(int[] array){
+		
+	}
+	
+	/**
+	 * 冒泡排序
+	 * @param array 待排序的数组
+	 */
+	public void bubbleSort(int[] array){
+		//flag标志用于判断当前轮是否进行过交换 如果没有则可结束排序
+		int length = array.length;
+		boolean flag = true;
+		for(int indexOfRound = 0 ; indexOfRound < length && flag ; indexOfRound++){
+			flag = false;
+			for(int indexOfCompare = indexOfRound ; indexOfCompare < length - 1 ; indexOfCompare++){
+				if(array[indexOfCompare] > array[indexOfCompare+1]){
+					int temp = array[indexOfCompare+1];
+					array[indexOfCompare+1] = array[indexOfCompare];
+					array[indexOfCompare] = temp;
+					flag = true;
+				}
+			}
+		}
 	}
 	
 	/**
 	 * 快速排序-递归实现
 	 * @param array 待排序的数组
 	 * @param size 数组的长度
-	 * @param lf 左方下标
-	 * @param rg 右方下标
+	 * @param left 左方下标
+	 * @param right 右方下标
 	 */
-	public void quickSortRec(int array[] , int size , int lf , int rg){
+	public void quickSortRec(int[] array , int size , int left , int right){
 		int i,j,tmp;
-		int lf_index;
-		int rg_index;
+		int left_index;
+		int right_index;
 		
 		//l.第一个键值为d[lf]
-		if(lf<rg){
-			lf_index = lf + 1;
-			rg_index = rg; 
+		if(left < right){
+			left_index = left + 1;
+			right_index = right; 
 			//排序
 			while(true){
 				//2.由左向右找出一个键值大于d[lf]者
-				for( i = lf + 1 ; i <= rg ; i++){
-					if(array[i]>=array[lf]){
-						lf_index = i;
+				for( i = left + 1 ; i <= right ; i++){
+					if(array[i]>=array[left]){
+						left_index = i;
 						break;
 					}
-					lf_index++;
+					left_index++;
 				}
 				//3.由右向左找出一个键值小于d[lf]者
-				for( j = rg ; j >= lf + 1 ; j--){
-					if(array[j] <= array[lf]){
-						rg_index=j;
+				for( j = right ; j >= left + 1 ; j--){
+					if(array[j] <= array[left]){
+						right_index=j;
 						break;
 					}
-					rg_index--;
+					right_index--;
 				}
 				//4.若lf_idx < rg_index
-				if(lf_index < rg_index){
-					tmp = array[lf_index];
-					array[lf_index] = array[rg_index]; //则互换
-					array[rg_index] = tmp;
+				if(left_index < right_index){
+					tmp = array[left_index];
+					array[left_index] = array[right_index]; //则互换
+					array[right_index] = tmp;
 				}
 				else{
 					break;	
 				}
 			}
 			//5.1 若lf_idx大于等于rg_index
-			if(lf_index >= rg_index){
-				tmp = array[lf];
-				array[lf] = array[rg_index];
-				array[rg_index] = tmp;
+			if(left_index >= right_index){
+				tmp = array[left];
+				array[left] = array[right_index];
+				array[right_index] = tmp;
 				//5.2并以rg_index为基准点分成左右两半
-				quickSortRec(array,size,lf,rg_index-1);//递归排序
-				quickSortRec(array,size,rg_index+1,rg);//直到完成
+				quickSortRec(array,size,left,right_index-1);//递归排序
+				quickSortRec(array,size,right_index+1,right);//直到完成
 			}
 		}
 	}
@@ -87,7 +122,6 @@ public class Sort {
             if (right <= left) {
             	continue; 
             }
-            
             int temp;
             int i=left,j=right;
             if(left<right){
@@ -118,7 +152,6 @@ public class Sort {
                 //将轴数据放在i位置中
                 array[i]=temp;
             }
-
             if (left < i - 1) {
                 s.push(left);
                 s.push(i - 1);
@@ -132,13 +165,6 @@ public class Sort {
     
 	
 	
-	
-	
-	
-	
-	
-	
-	
 	public static void main(String args[]){
 		Sort qs = new Sort();		
 		int[] data = { 1 , 3 , 5 , 43 , 32 , 25 , 11 , 66 , 54 , 84 , 72 , 99};	
@@ -146,20 +172,11 @@ public class Sort {
 //		qs.quickSortRec(data,data.length,0,data.length-1);
 //		qs.showdata(data);
 		
-		qs.quickSortNonrec(data);
+//		qs.quickSortNonrec(data);
+//		qs.showdata(data);
+		
+		qs.bubbleSort(data);
 		qs.showdata(data);
 		
-	}
-	
-	/**
-	 * 遍历数组
-	 * @param array
-	 */
-	public void showdata(int[] data){
-		System.out.print("");
-		for(int i = 0 ; i < data.length ; i++){
-			System.out.print(data[i]+" ");
-		}
-		System.out.println();
 	}
 }
