@@ -2,7 +2,7 @@ package com.jason.best;
 
 import com.jason.data_structure.Sort;
 
-public class Oyqx_20160729 {
+public class Oyqx_20160729_Ex {
 	/**
 	 * @param array 待处理的数组
 	 * @return 两个小组的差值
@@ -16,24 +16,29 @@ public class Oyqx_20160729 {
 		//1.对于数组进行排序
 		Sort sort = new Sort();
 		sort.quickSortNonrec(array);
-		//2.将数组分为两组
-		int groupA = 0;
-		for( int i = 0 ; i < array.length ; i = i + 2){
-			groupA = groupA + array[i];
-			if(i == (array.length / 2 - 1) ){
-				i++;
-			}
-		}
-		//3.计算两组和的差并返回
+		//2.计算数组总和的一半 并记为 关键值keyValue
 		int total = 0 ;
 		for( int i = 0 ; i < array.length ; i++){
 			total = total + array[i];
 		}
+		int keyValue = total / 2;
+		
+		//3.从后往前遍历 如果关键值大于当前值 则 keyValue = keyValue - array[i] 直到遍历结束或关键值等于0 
+		for(int i = array.length -1 ; i >= 0 ; i-- ){
+			if( keyValue > array[i]){
+				keyValue = keyValue - array[i];
+			}
+			if(keyValue == 0){
+				break;
+			}
+		}
+		int groupA = total / 2 - keyValue;
 		int result = total - groupA -groupA;
 		System.out.println("A:"+groupA+" B:"+(total - groupA)+" total:"+total);
 		if(result < 0){
 			result = 0 - result ;
 		}
+		
 		return result;
 	}
 	
@@ -41,6 +46,6 @@ public class Oyqx_20160729 {
 		int[] data = { 1 , 3 , 5 , 43 , 32 , 25 , 11 , 66 , 54 , 84 , 72 , 99};	
 		int[] data1 = { 90 , 91 , 92 , 93 , 94 , 95 , 96 , 97 , 98 , 99};	
 		
-		System.out.println(getResult(data));
+		System.out.println(getResult(data1));
 	}
 }
