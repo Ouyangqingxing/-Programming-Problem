@@ -16,36 +16,33 @@ public class Oyqx_20160729_Ex {
 		//1.对于数组进行排序
 		Sort sort = new Sort();
 		sort.quickSortNonrec(array);
-		//2.计算数组总和的一半 并记为 关键值keyValue
-		int total = 0 ;
-		for( int i = 0 ; i < array.length ; i++){
-			total = total + array[i];
+		//2.从后往前遍历 当前总和小的一组 分得当前数组最大值，大的一组分得次最大值
+		int groupA = 0 , groupB = 0;
+		for( int i = array.length - 1 ; i >= 0 ; i = i - 2){
+			if(groupA >= groupB){
+				groupB = groupB + array[i];
+				groupA = groupA + array[i-1];
+			}
+			else{
+				groupB = groupB + array[i-1];
+				groupA = groupA + array[i];
+			}
 		}
-		int keyValue = total / 2;
 		
-		//3.从后往前遍历 如果关键值大于当前值 则 keyValue = keyValue - array[i] 直到遍历结束或关键值等于0 
-		for(int i = array.length -1 ; i >= 0 ; i-- ){
-			if( keyValue > array[i]){
-				keyValue = keyValue - array[i];
-			}
-			if(keyValue == 0){
-				break;
-			}
-		}
-		int groupA = total / 2 - keyValue;
-		int result = total - groupA -groupA;
-		System.out.println("A:"+groupA+" B:"+(total - groupA)+" total:"+total);
+		//3.计算结果并返回
+		int result = groupA - groupB;
 		if(result < 0){
 			result = 0 - result ;
 		}
-		
 		return result;
 	}
 	
 	public static void main(String[] args) {
-		int[] data = { 1 , 3 , 5 , 43 , 32 , 25 , 11 , 66 , 54 , 84 , 72 , 99};	
-		int[] data1 = { 90 , 91 , 92 , 93 , 94 , 95 , 96 , 97 , 98 , 99};	
+		int[] data  = { 0 , 3 , 5 , 43 , 32 , 25 , 11 , 66 , 54 , 84 , 72 , 99};	
+		int[] data1 = { 1 , 2 , 3 , 4 , 5 , 6};	
+		int[] data2 = { 90 , 91 , 92 , 93 , 94 , 95 , 96 , 97 , 98 , 99};	
+		int[] data3 = { -20, -10 ,-5 , -100,-80,0, 23 , 55 ,98 ,77, 10 , 20};	
 		
-		System.out.println(getResult(data1));
+		System.out.println(getResult(data3));
 	}
 }
