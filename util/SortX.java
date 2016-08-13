@@ -1,8 +1,13 @@
-package com.jason.data_structure;
+package com.jason.util;
 
+import java.util.Arrays;
 import java.util.Stack;
 
-public class Sort {
+/**
+ * 排序 递增
+ * @author Jason
+ */
+public class SortX {
 	/**
 	 * 遍历数组
 	 * 将信息输出在控制台
@@ -16,29 +21,77 @@ public class Sort {
 		System.out.println();
 	}
 
+	/**
+	 * 希尔排序-不稳定
+	 * @param array 待排序的数组
+	 */
 	public void shellSort(int[] array){
-		
-	}
-	
-	public void RadixSort(int[] array){
-		
+		int j = 0;  
+        int temp = 0;  
+        for (int increment = array.length/2 ; increment > 0 ; increment /= 2) {  
+            for (int i = increment ; i < array.length ; i++) {  
+                temp = array[i];  
+                for (j = i ; j >= increment ; j -= increment) {  
+                    if(temp < array[j - increment]){  
+                    	array[j] = array[j - increment];  
+                    }else{  
+                        break;  
+                    }  
+                }   
+                array[j] = temp;  
+            }  
+        }  
 	}
 	
 	/**
-	 * 冒泡排序
+	 * 基数排序-稳定
+	 * @param array 待排序的数组
+	 * @param radix 基数 一般为10
+	 * @param distance 最大数的位数
+	 */
+	public void RadixSort(int[] array , int radix , int distance){
+		//buckets用于记录待排序元素的信息   数组定义了max-min个桶  
+        int[] tmp = new int[array.length];  
+        int[] buckets = new int[radix];  
+  
+        for (int i = 0, rate = 1 ; i < distance ; i++) {  
+            // 重置count数组，开始统计下一个关键字  将data中的元素完全复制到tmp数组中  
+            Arrays.fill(buckets, 0);  
+            System.arraycopy(array, 0, tmp, 0, array.length);  
+  
+            // 计算每个待排序数据的子关键字  
+            for (int j = 0; j < array.length; j++) {  
+                int subKey = (tmp[j] / rate) % radix;  
+                buckets[subKey]++;  
+            }  
+            for (int j = 1; j < radix; j++) {  
+                buckets[j] = buckets[j] + buckets[j - 1];  
+            }  
+            // 按子关键字对指定的数据进行排序  
+            for (int m = array.length - 1; m >= 0; m--) {  
+                int subKey = (tmp[m] / rate) % radix;  
+                array[--buckets[subKey]] = tmp[m];  
+            }  
+            rate *= radix;  
+        }
+	}
+	
+	/**
+	 * 冒泡排序-稳定
 	 * @param array 待排序的数组
 	 */
 	public void bubbleSort(int[] array){
 		//flag标志用于判断当前轮是否进行过交换 如果没有则可结束排序
+		//i为比较的轮数	j为当前比较的下标
 		int length = array.length;
 		boolean flag = true;
-		for(int indexOfRound = 0 ; indexOfRound < length && flag ; indexOfRound++){
+		for(int i = 0 ; i < length && flag ; i++){
 			flag = false;
-			for(int indexOfCompare = indexOfRound ; indexOfCompare < length - 1 ; indexOfCompare++){
-				if(array[indexOfCompare] > array[indexOfCompare+1]){
-					int temp = array[indexOfCompare+1];
-					array[indexOfCompare+1] = array[indexOfCompare];
-					array[indexOfCompare] = temp;
+			for(int j = 0 ; j < length - 1 - i ; j++){
+				if(array[j] > array[j+1]){
+					int temp = array[j+1];
+					array[j+1] = array[j];
+					array[j] = temp;
 					flag = true;
 				}
 			}
@@ -46,7 +99,7 @@ public class Sort {
 	}
 	
 	/**
-	 * 快速排序-递归实现
+	 * 快速排序-不稳定-递归实现
 	 * @param array 待排序的数组
 	 * @param size 数组的长度
 	 * @param left 左方下标
@@ -61,7 +114,6 @@ public class Sort {
 		if(left < right){
 			left_index = left + 1;
 			right_index = right; 
-			//排序
 			while(true){
 				//2.由左向右找出一个键值大于d[lf]者
 				for( i = left + 1 ; i <= right ; i++){
@@ -102,7 +154,7 @@ public class Sort {
 	}
 	
 	/**
-	 * 快速排序-非递归实现
+	 * 快速排序-不稳定-非递归实现
 	 * @param array 待排序的数组
 	 */
 	public void quickSortNonrec(int[] array) {
@@ -163,20 +215,4 @@ public class Sort {
         } 
     }
     
-	
-	
-	public static void main(String args[]){
-		Sort qs = new Sort();		
-		int[] data = { 1 , 3 , 5 , 43 , 32 , 25 , 11 , 66 , 54 , 84 , 72 , 99};	
-		
-//		qs.quickSortRec(data,data.length,0,data.length-1);
-//		qs.showdata(data);
-		
-//		qs.quickSortNonrec(data);
-//		qs.showdata(data);
-		
-		qs.bubbleSort(data);
-		qs.showdata(data);
-		
-	}
 }
