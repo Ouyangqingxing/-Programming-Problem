@@ -1,5 +1,8 @@
 package com.jason.util;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 public class Test {
@@ -23,9 +26,41 @@ public class Test {
 //		qs.RadixSort(data, 10, 3);
 //		qs.showdata(data);
 			
-		RandomX rx = new RandomX();
-		for( int i = 0 ; i < 20 ; i ++){
-			System.out.print(rx.getRandomNumber(100, 105) + " ");
-		}
+//		RandomX rx = new RandomX();
+//		int totalNumber = 0;
+//		for( int i = 0 ; i < 20 ; i ++){
+//			int currentNumber = rx.getRandomNumber(1, 10);
+//			totalNumber = totalNumber + currentNumber ;
+//			System.out.print(currentNumber + " ");
+//		}
+//		System.out.println();
+//		System.out.print(totalNumber / 20);
+		
+//		ArrayList<Integer> resultList = new ArrayList<Integer>();
+//		resultList = rx.getRandomNumbers(10, 100);
+//		resultList = rx.getEvenRandomNumbers(10 , 20 , false);
+//		System.out.println(resultList.toString());
+		
+//		int happenTimes = 0;
+//		for(int j = 0 ; j < 10 ; j++){
+//			for(int i = 0 ; i < 100 ; i++){
+//				if( rx.checkHappen(1) ){
+//					happenTimes++;
+//				}
+//			}
+//			System.out.print(happenTimes+" ");
+//			happenTimes = 0 ;
+//		}
+		
+		
+		Calendar today = Calendar.getInstance();
+//		String time = today.getTime().toString();
+//		time = time.replace(" ", "");
+		//time.replaceAll(" ", "2");
+//		System.out.println(time);
+		 
+		
+		
+		
 	}
 }
