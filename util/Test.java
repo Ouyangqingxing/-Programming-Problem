@@ -26,7 +26,7 @@ public class Test {
 //		qs.RadixSort(data, 10, 3);
 //		qs.showdata(data);
 			
-//		RandomX rx = new RandomX();
+		RandomX rx = new RandomX();
 //		int totalNumber = 0;
 //		for( int i = 0 ; i < 20 ; i ++){
 //			int currentNumber = rx.getRandomNumber(1, 10);
@@ -52,14 +52,17 @@ public class Test {
 //			happenTimes = 0 ;
 //		}
 		
+//		for(int i = 0 ; i < 200 ; i++){
+//			System.out.println(rx.getUniqueStr());
+//		} 
 		
-		Calendar today = Calendar.getInstance();
-//		String time = today.getTime().toString();
-//		time = time.replace(" ", "");
-		//time.replaceAll(" ", "2");
-//		System.out.println(time);
-		 
 		
+		
+//		IdentifyX ix = new IdentifyX();
+//		String random = (String) ix.getIdentifyChinese(2).get("identifyString") ;
+//		System.out.println(random);
+		
+//		StringBuilder sb = new StringBuilder("Hello World!");
 		
 		
 	}

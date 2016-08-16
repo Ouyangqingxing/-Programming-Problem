@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
-public class RandomX {
-	
-	//图片取名字
+/**
+ * 提供一些常用的随机方法 
+ * @author X_Plan Jason_★ 
+ */
+public class RandomX{
 	
 	/**
 	 * 获得一个根据当前日期计算得到范围为[1,10]的数 
@@ -28,9 +30,16 @@ public class RandomX {
 		return luckNumber;
 	}
 	
+	/**
+	 * 获得一个由当前时间和随机数组成的字符串
+	 * @return 结果
+	 */
 	public String getUniqueStr(){
-		String result = "";
-		
+		Calendar today = Calendar.getInstance();
+		int randomNumber = ( getRandomNumber(100,10000) * getRandomNumber(100,10000) - getRandomNumber(100,9999) ); 
+		String time = today.getTime().toString();
+		time = time.replace(" ", "");
+		String result = time + randomNumber;
 		return result;
 	}
 	

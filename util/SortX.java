@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Stack;
 
 /**
- * 排序 递增
- * @author Jason
+ * 提供常见排序（结果均为递增）
+ * @author X_Plan Jason_★
  */
 public class SortX {
 	
@@ -215,5 +215,5 @@ public class SortX {
             }
         } 
     }
-    
+
 }
